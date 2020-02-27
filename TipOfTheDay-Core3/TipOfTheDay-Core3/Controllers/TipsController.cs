@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TipOfTheDay_Core3.Data;
+using TipOfTheDay_Core3.Models;
 
-namespace TipOfTheDay_Core3.Models
+namespace TipOfTheDay_Core3.Controllers
 {
     public class TipsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public TipsController(AppDbContext context)
+        public TipsController(ApplicationDbContext context)
         {
             _context = context;
         }

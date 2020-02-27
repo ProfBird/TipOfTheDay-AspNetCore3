@@ -1,42 +1,39 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TipOfTheDay_Core3.Migrations
+namespace TipOfTheDay_Core3.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class AppUserIdentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AppUser",
-                columns: table => new
-                {
-                    AppUserID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppUser", x => x.AppUserID);
-                });
+            migrationBuilder.AddColumn<string>(
+                name: "Discriminator",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: "");
+
+            migrationBuilder.AddColumn<string>(
+                name: "FullName",
+                table: "AspNetUsers",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Tip",
                 columns: table => new
                 {
                     TipID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    MemberAppUserID = table.Column<int>(nullable: true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberId = table.Column<string>(nullable: true),
                     TipText = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tip", x => x.TipID);
                     table.ForeignKey(
-                        name: "FK_Tip_AppUser_MemberAppUserID",
-                        column: x => x.MemberAppUserID,
-                        principalTable: "AppUser",
-                        principalColumn: "AppUserID",
+                        name: "FK_Tip_AspNetUsers_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -45,8 +42,8 @@ namespace TipOfTheDay_Core3.Migrations
                 columns: table => new
                 {
                     CommentID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    MemberAppUserID = table.Column<int>(nullable: true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberId = table.Column<string>(nullable: true),
                     CommentText = table.Column<string>(nullable: true),
                     TipID = table.Column<int>(nullable: true)
                 },
@@ -54,10 +51,10 @@ namespace TipOfTheDay_Core3.Migrations
                 {
                     table.PrimaryKey("PK_Comment", x => x.CommentID);
                     table.ForeignKey(
-                        name: "FK_Comment_AppUser_MemberAppUserID",
-                        column: x => x.MemberAppUserID,
-                        principalTable: "AppUser",
-                        principalColumn: "AppUserID",
+                        name: "FK_Comment_AspNetUsers_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comment_Tip_TipID",
@@ -72,7 +69,7 @@ namespace TipOfTheDay_Core3.Migrations
                 columns: table => new
                 {
                     LanguageID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     TipID = table.Column<int>(nullable: true)
                 },
@@ -92,7 +89,7 @@ namespace TipOfTheDay_Core3.Migrations
                 columns: table => new
                 {
                     TagID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Category = table.Column<string>(nullable: true),
                     TipID = table.Column<int>(nullable: true)
                 },
@@ -108,9 +105,9 @@ namespace TipOfTheDay_Core3.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_MemberAppUserID",
+                name: "IX_Comment_MemberId",
                 table: "Comment",
-                column: "MemberAppUserID");
+                column: "MemberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comment_TipID",
@@ -128,9 +125,9 @@ namespace TipOfTheDay_Core3.Migrations
                 column: "TipID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tip_MemberAppUserID",
+                name: "IX_Tip_MemberId",
                 table: "Tip",
-                column: "MemberAppUserID");
+                column: "MemberId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -147,8 +144,13 @@ namespace TipOfTheDay_Core3.Migrations
             migrationBuilder.DropTable(
                 name: "Tip");
 
-            migrationBuilder.DropTable(
-                name: "AppUser");
+            migrationBuilder.DropColumn(
+                name: "Discriminator",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "FullName",
+                table: "AspNetUsers");
         }
     }
 }
