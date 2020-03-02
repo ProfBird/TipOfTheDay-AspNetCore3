@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Runtime.InteropServices;
+using TipOfTheDay.Data.Repositories;
 
 namespace TipOfTheDay
 {
@@ -53,6 +54,9 @@ namespace TipOfTheDay
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Inject repositories into the controllers
+            services.AddTransient<ITipsRepository, TipsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

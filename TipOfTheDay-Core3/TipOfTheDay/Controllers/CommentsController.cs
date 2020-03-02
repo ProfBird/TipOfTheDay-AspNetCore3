@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,22 +10,22 @@ using TipOfTheDay.Models;
 
 namespace TipOfTheDay.Controllers
 {
-    public class TipsController : Controller
+    public class CommentsController : Controller
     {
-        private readonly ITipsRepository _repo;
+        private readonly ApplicationDbContext _context;
 
-        public TipsController(ITipsRepository repo)
+        public CommentsController(ApplicationDbContext context)
         {
-            _repo = repo;
+            _context = context;
         }
 
-        // GET: Tips
+        // GET: Comments
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.GetAllTipsAsync());
+            return View(await _context.Comment.ToListAsync());
         }
 
-        // GET: Tips/Details/5
+        // GET: Comments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,38 +33,39 @@ namespace TipOfTheDay.Controllers
                 return NotFound();
             }
 
-            var tip = await _repo.GetTipAsync(id);
-                
-            if (tip == null)
+            var comment = await _context.Comment
+                .FirstOrDefaultAsync(m => m.CommentID == id);
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(tip);
+            return View(comment);
         }
 
-        // GET: Tips/Create
+        // GET: Comments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Tips/Create
+        // POST: Comments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TipID,TipText")] Tip tip)
+        public async Task<IActionResult> Create([Bind("CommentID,CommentText")] Comment comment)
         {
             if (ModelState.IsValid)
             {
-                _repo.AddTip(tip);
+                _context.Add(comment);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(tip);
+            return View(comment);
         }
 
-        // GET: Tips/Edit/5
+        // GET: Comments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +73,22 @@ namespace TipOfTheDay.Controllers
                 return NotFound();
             }
 
-            var tip = await _repo.GetTipAsync(id);
-            if (tip == null)
+            var comment = await _context.Comment.FindAsync(id);
+            if (comment == null)
             {
                 return NotFound();
             }
-            return View(tip);
+            return View(comment);
         }
 
-        // POST: Tips/Edit/5
+        // POST: Comments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TipID,TipText")] Tip tip)
+        public async Task<IActionResult> Edit(int id, [Bind("CommentID,CommentText")] Comment comment)
         {
-            if (id != tip.TipID)
+            if (id != comment.CommentID)
             {
                 return NotFound();
             }
@@ -96,11 +97,12 @@ namespace TipOfTheDay.Controllers
             {
                 try
                 {
-                    _repo.UpdateTip(tip);
+                    _context.Update(comment);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipExists(tip.TipID))
+                    if (!CommentExists(comment.CommentID))
                     {
                         return NotFound();
                     }
@@ -111,10 +113,10 @@ namespace TipOfTheDay.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tip);
+            return View(comment);
         }
 
-        // GET: Tips/Delete/5
+        // GET: Comments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,29 +124,30 @@ namespace TipOfTheDay.Controllers
                 return NotFound();
             }
 
-            var tip = await _repo.GetTipAsync(id);
-            if (tip == null)
+            var comment = await _context.Comment
+                .FirstOrDefaultAsync(m => m.CommentID == id);
+            if (comment == null)
             {
                 return NotFound();
             }
 
-            return View(tip);
+            return View(comment);
         }
 
-        // POST: Tips/Delete/5
+        // POST: Comments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            _repo.DeleteTip(id);
-
+            var comment = await _context.Comment.FindAsync(id);
+            _context.Comment.Remove(comment);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        
-        private bool TipExists(int id)
+
+        private bool CommentExists(int id)
         {
-            return _repo.TipExists(id);
+            return _context.Comment.Any(e => e.CommentID == id);
         }
-        
     }
 }
