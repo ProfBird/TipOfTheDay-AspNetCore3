@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TipOfTheDay.Models;
 
@@ -12,11 +13,18 @@ namespace TipOfTheDay.Data.Repositories
         }
 
         private List<Tip> tips = new List<Tip>();
-        public List<Tip> Tips { get; }
+        public List<Tip> Tips { get { return tips; } }
 
         public bool AddTip(Tip tip)
         {
-            throw new NotImplementedException();
+            bool isSuccess = false;
+            if (tip != null)
+            {
+                tips.Add(tip);
+                isSuccess = true;
+            }
+
+            return isSuccess;
         }
 
         public bool DeleteTip(int? id)
@@ -24,7 +32,7 @@ namespace TipOfTheDay.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Tip>> GetAllTipsAsync()
+        public Task<IQueryable<Tip>> GetAllTipsAsync()
         {
             throw new NotImplementedException();
         }

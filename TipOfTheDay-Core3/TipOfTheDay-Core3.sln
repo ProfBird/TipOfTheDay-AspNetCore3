@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipOfTheDay", "TipOfTheDay-Core3\TipOfTheDay.csproj", "{EC74D6BE-7D93-47F1-8837-32ED6E3C4E91}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipOfTheDay.Tests", "TipOfTheDay.Tests\TipOfTheDay.Tests.csproj", "{8A449B80-3902-4217-BB1E-606EF3D7E102}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TipOfTheDay", "TipOfTheDay\TipOfTheDay.csproj", "{6143A74B-F443-42D3-8381-FC0616E36B98}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC74D6BE-7D93-47F1-8837-32ED6E3C4E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC74D6BE-7D93-47F1-8837-32ED6E3C4E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC74D6BE-7D93-47F1-8837-32ED6E3C4E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC74D6BE-7D93-47F1-8837-32ED6E3C4E91}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8A449B80-3902-4217-BB1E-606EF3D7E102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8A449B80-3902-4217-BB1E-606EF3D7E102}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A449B80-3902-4217-BB1E-606EF3D7E102}.Release|Any CPU.ActiveCfg = Release|Any CPU
