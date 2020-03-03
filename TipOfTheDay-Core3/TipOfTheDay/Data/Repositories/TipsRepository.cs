@@ -15,17 +15,17 @@ namespace TipOfTheDay.Data.Repositories
             _context = context;
         }
 
-        public Task<int> AddTip(Tip tip)
+        public Task<int> AddTipAsync(Tip tip)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> DeleteTip(int? id)
+        public Task<int> DeleteTipAsync(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Tip> GetAllTips()
+        public Task<IQueryable<Tip>> GetAllTipsAsync()
         {
             throw new NotImplementedException();
         }
@@ -35,7 +35,7 @@ namespace TipOfTheDay.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateTip(Tip tip)
+        public Task<int> UpdateTipAsync(Tip tip)
         {
             throw new NotImplementedException();
         }

@@ -8,11 +8,11 @@ namespace TipOfTheDay.Data
 {
     public interface ITipsRepository
     {
-        public Task<int> AddTip(Tip tip);
+        public Task<int> AddTipAsync(Tip tip);
         public Task<Tip> GetTipAsync(int? id);
-        public IQueryable<Tip> GetAllTips();
-        public Task<int> UpdateTip(Tip tip);
-        public Task<int> DeleteTip(int? id);
+        public Task<IQueryable<Tip>>GetAllTipsAsync();
+        public Task<int> UpdateTipAsync(Tip tip);
+        public Task<int> DeleteTipAsync(int? id);
         public bool TipExists(int id);
     }
 }

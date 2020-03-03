@@ -22,7 +22,16 @@ namespace TipOfTheDay.Controllers
         // GET: Tips
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.GetAllTips().ToListAsync());
+            IQueryable<Tip> result = await _repo.GetAllTipsAsync();
+            return View( result.ToList());
+        }
+
+        // GET: Tips/Find/"name"
+        public async Task<IActionResult> Find(String fullName)
+        {
+            IQueryable<Tip> result = await _repo.GetAllTipsAsync();
+            return View(result.Where(t => t.Member.FullName == fullName)
+                              .ToList());
         }
 
         // GET: Tips/Details/5
@@ -58,7 +67,7 @@ namespace TipOfTheDay.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repo.AddTip(tip);
+                await _repo.AddTipAsync(tip);
                 return RedirectToAction(nameof(Index));
             }
             return View(tip);
@@ -96,7 +105,7 @@ namespace TipOfTheDay.Controllers
             {
                 try
                 {
-                    await _repo.UpdateTip(tip);
+                    await _repo.UpdateTipAsync(tip);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -136,7 +145,7 @@ namespace TipOfTheDay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           await _repo.DeleteTip(id);
+           await _repo.DeleteTipAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
