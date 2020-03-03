@@ -22,7 +22,7 @@ namespace TipOfTheDay.Controllers
         // GET: Tips
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.GetAllTipsAsync());
+            return View(await _repo.GetAllTips().ToListAsync());
         }
 
         // GET: Tips/Details/5
@@ -96,7 +96,7 @@ namespace TipOfTheDay.Controllers
             {
                 try
                 {
-                    _repo.UpdateTip(tip);
+                    await _repo.UpdateTip(tip);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -136,7 +136,7 @@ namespace TipOfTheDay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            _repo.DeleteTip(id);
+           await _repo.DeleteTip(id);
 
             return RedirectToAction(nameof(Index));
         }

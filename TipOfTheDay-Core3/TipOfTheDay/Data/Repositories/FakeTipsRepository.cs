@@ -15,26 +15,26 @@ namespace TipOfTheDay.Data.Repositories
         private List<Tip> tips = new List<Tip>();
         public List<Tip> Tips { get { return tips; } }
 
-        public bool AddTip(Tip tip)
+        public Task<int> AddTip(Tip tip)
         {
-            bool isSuccess = false;
+            int success = 0;
             if (tip != null)
             {
                 tips.Add(tip);
-                isSuccess = true;
+                success = 1;
             }
 
-            return isSuccess;
+            return Task.FromResult<int>(success);
         }
 
-        public bool DeleteTip(int? id)
+        public Task<int> DeleteTip(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Tip>> GetAllTipsAsync()
+        public IQueryable<Tip> GetAllTips()
         {
-            throw new NotImplementedException();
+            return tips.AsQueryable<Tip>();
         }
 
         public Task<Tip> GetTipAsync(int? id)
@@ -42,7 +42,7 @@ namespace TipOfTheDay.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public bool UpdateTip(Tip tip)
+        public Task<int> UpdateTip(Tip tip)
         {
             throw new NotImplementedException();
         }
