@@ -44,5 +44,10 @@ namespace TipOfTheDay.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<int> AddCommentAsync(Comment comment, int TipId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
