@@ -28,7 +28,7 @@ namespace TipOfTheDay.Data.Repositories
                 // We won't need to add the ID in the real repo
                 tip.TipID = tips.Count + 1;
                 tips.Add(tip);
-                success = 1;
+                success = 1;  // This will come from DbContext.Add in the real repo
             }
 
             return Task.FromResult<int>(success);
@@ -66,15 +66,14 @@ namespace TipOfTheDay.Data.Repositories
             int success = 0;
             if (comment != null && tipId != 0)
             {
-                // We won't need to do this in the real repo
-                // because the DbContext will do this check
-                // as part of the Add method
                 Tip tip = tips.Find(t => t.TipID == tipId);
                 if (tip != null)
                 {
+                    // We won't need to set the ID in the real repo
                     comment.CommentID = comments.Count + 1;
                     comments.Add(comment);
                     tip.Comments.Add(comment);
+                    // success will be returned by the DbContext.Add method in the real repo
                     success = 1;
                 }
             }
