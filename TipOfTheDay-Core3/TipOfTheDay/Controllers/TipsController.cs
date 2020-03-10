@@ -21,7 +21,7 @@ namespace TipOfTheDay.Controllers
         public async Task<IActionResult> Index()
         {
             IQueryable<Tip> result = await _repo.GetAllTipsAsync();
-            return View( result.ToList());
+            return View(result.ToList());
         }
 
         // GET: Tips/Find/"name"
@@ -41,7 +41,7 @@ namespace TipOfTheDay.Controllers
             }
 
             var tip = await _repo.GetTipAsync(id);
-                
+
             if (tip == null)
             {
                 return NotFound();
@@ -143,15 +143,29 @@ namespace TipOfTheDay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           await _repo.DeleteTipAsync(id);
+            await _repo.DeleteTipAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
-        
+
         private bool TipExists(int id)
         {
             return _repo.TipExists(id);
         }
-        
+
+        /***************** Comment methods ************/
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateComment([Bind("CommentID,CommentText,TipID")] Comment comment, int tipId)
+        {
+            if (ModelState.IsValid)
+            {
+                await _repo.AddCommentAsync(comment, tipId);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(comment);
+        }
+
     }
 }
