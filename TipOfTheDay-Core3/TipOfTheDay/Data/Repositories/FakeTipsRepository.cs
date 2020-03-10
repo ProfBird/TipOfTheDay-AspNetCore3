@@ -8,10 +8,6 @@ namespace TipOfTheDay.Data.Repositories
 {
     public class FakeTipsRepository : ITipsRepository
     {
-        public FakeTipsRepository()
-        {
-        }
-
         private List<Tip> tips = new List<Tip>();
         private List<Comment> comments = new List<Comment>();
 
