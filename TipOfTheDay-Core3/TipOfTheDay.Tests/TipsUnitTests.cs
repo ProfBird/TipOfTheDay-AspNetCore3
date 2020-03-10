@@ -20,7 +20,7 @@ namespace TipOfTheDay.Tests
         const String JOE_USER = "Joe User";
         const String JANE_USER = "Jane User";
 
-        // Constructor with common setup for all tests
+        // Common setup for all tests
        public TipsTests()
         {
             repo = new FakeTipsRepository();
@@ -33,28 +33,6 @@ namespace TipOfTheDay.Tests
             };
 
         }
-
-        // Helper for test setup--it adds three tips to the repo
-        private async Task AddTipsToRepoAsync()
-        {
-            await repo.AddTipAsync(tip);  // first tip created in constructor
-            tip = new Tip
-            {
-                TipText = "Second tip",
-                Member = member
-            };
-            await repo.AddTipAsync(tip);
-
-            tip = new Tip
-            {
-                TipText = "Third tip",
-                Member = new AppUser { FullName = JANE_USER }
-            };
-            await repo.AddTipAsync(tip);
-        }
-
-
-        /************ Tip Tests ***********/
 
         [Fact]
         public async Task CreateTipTestAsync()
@@ -100,26 +78,22 @@ namespace TipOfTheDay.Tests
             Assert.Equal(2, tips.Count);
         }
 
-        /*************** Comment tests *************/
-
-        [Fact]
-        private async Task AddCommentToTipAsync()
+        private async Task AddTipsToRepoAsync()
         {
-            // Arrange
-            await repo.AddTipAsync(tip);
-            Comment comment = new Comment
+            await repo.AddTipAsync(tip);  // first tip created in constructor
+            tip = new Tip
             {
-                CommentText = "This is a comment",
+                TipText = "Second tip",
+                Member = member
+            };
+            await repo.AddTipAsync(tip);
+
+            tip = new Tip
+            {
+                TipText = "Third tip",
                 Member = new AppUser { FullName = JANE_USER }
             };
-
-            // Act
-            await controller.CreateComment(comment, tip.TipID);
-
-            // Assert
-            Assert.True(repo.Comments.Contains(comment) &&
-                        tip.Comments.Contains(comment));
-
+            await repo.AddTipAsync(tip);
         }
         
     }

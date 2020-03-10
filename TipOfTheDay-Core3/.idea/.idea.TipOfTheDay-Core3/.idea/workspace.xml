@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aabb100d-f097-4fb9-8fa9-6b8b4527980a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TipOfTheDay/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TipOfTheDay/Startup.cs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/TipOfTheDay/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/TipOfTheDay/Startup.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea/.idea.TipOfTheDay-Core3/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Yh7RJyioXAi69AI2PzTqdWtG4A" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TWShift.3" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.TipOfTheDay">
+    <configuration name="TipOfTheDay" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TipOfTheDay/TipOfTheDay.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="TipOfTheDay" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TipOfTheDay: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TipOfTheDay/TipOfTheDay.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TipOfTheDay: TipOfTheDay_Core3" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TipOfTheDay/TipOfTheDay.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="TipOfTheDay_Core3" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aabb100d-f097-4fb9-8fa9-6b8b4527980a" name="Default Changelist" comment="" />
+      <created>1583382963225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583382963225</updated>
+      <workItem from="1583382966497" duration="424000" />
+      <workItem from="1583383404380" duration="60000" />
+      <workItem from="1583383507158" duration="151000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1238" height="184" key="GridCell.Tab.0.bottom" timestamp="1583383657770">
+      <screen x="0" y="23" width="1280" height="738" />
+    </state>
+    <state width="1238" height="184" key="GridCell.Tab.0.bottom/0.23.1280.738@0.23.1280.738" timestamp="1583383657770" />
+    <state width="1238" height="185" key="GridCell.Tab.0.bottom/0.23.1280.739@0.23.1280.739" timestamp="1583383463782" />
+    <state width="1238" height="184" key="GridCell.Tab.0.center" timestamp="1583383657769">
+      <screen x="0" y="23" width="1280" height="738" />
+    </state>
+    <state width="1238" height="184" key="GridCell.Tab.0.center/0.23.1280.738@0.23.1280.738" timestamp="1583383657769" />
+    <state width="1238" height="185" key="GridCell.Tab.0.center/0.23.1280.739@0.23.1280.739" timestamp="1583383463781" />
+    <state width="1238" height="184" key="GridCell.Tab.0.left" timestamp="1583383657769">
+      <screen x="0" y="23" width="1280" height="738" />
+    </state>
+    <state width="1238" height="184" key="GridCell.Tab.0.left/0.23.1280.738@0.23.1280.738" timestamp="1583383657769" />
+    <state width="1238" height="185" key="GridCell.Tab.0.left/0.23.1280.739@0.23.1280.739" timestamp="1583383463780" />
+    <state width="1238" height="184" key="GridCell.Tab.0.right" timestamp="1583383657770">
+      <screen x="0" y="23" width="1280" height="738" />
+    </state>
+    <state width="1238" height="184" key="GridCell.Tab.0.right/0.23.1280.738@0.23.1280.738" timestamp="1583383657770" />
+    <state width="1238" height="185" key="GridCell.Tab.0.right/0.23.1280.739@0.23.1280.739" timestamp="1583383463781" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TipOfTheDay/Startup.cs</url>
+          <line>105</line>
+          <properties documentPath="$PROJECT_DIR$/TipOfTheDay/Startup.cs" initialLine="105">
+            <startOffsets>
+              <option value="3699" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3808" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TipOfTheDay/Startup.cs</url>
+          <line>55</line>
+          <properties documentPath="$PROJECT_DIR$/TipOfTheDay/Startup.cs" initialLine="55">
+            <startOffsets>
+              <option value="1882" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2139" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

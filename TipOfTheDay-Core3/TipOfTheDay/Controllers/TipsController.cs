@@ -154,20 +154,6 @@ namespace TipOfTheDay.Controllers
         {
             return _repo.TipExists(id);
         }
-
-        /***************** Comment methods ************/
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateComment([Bind("CommentID,CommentText,TipID")] Comment comment, int  tipId)
-        {
-            if (ModelState.IsValid)
-            {
-                await _repo.AddCommentAsync(comment, tipId);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(comment);
-        }
-
+        
     }
 }
