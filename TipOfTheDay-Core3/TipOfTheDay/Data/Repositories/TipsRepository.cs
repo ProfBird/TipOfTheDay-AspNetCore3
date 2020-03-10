@@ -14,33 +14,33 @@ namespace TipOfTheDay.Data.Repositories
             _context = context;
         }
 
-        public Task<int> AddTipAsync(Tip tip)
+        public async Task<int> AddTipAsync(Tip tip)
         {
             _context.Tip.Add(tip);
-            return _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<int> DeleteTipAsync(int? id)
+        public async Task<int> DeleteTipAsync(int? id)
         {
             var tip = _context.Tip.Find(id);
             _context.Tip.Remove(tip);
-            return _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<IQueryable<Tip>> GetAllTipsAsync()
+        public async Task<IQueryable<Tip>> GetAllTipsAsync()
         {
-            return Task.FromResult<IQueryable<Tip>>(_context.Tip);
+            return await Task.FromResult<IQueryable<Tip>>(_context.Tip);
         }
 
-        public Task<Tip> GetTipAsync(int? id)
+        public async Task<Tip> GetTipAsync(int? id)
         {
-            return Task.FromResult<Tip>(_context.Tip.Find(id));
+            return await Task.FromResult<Tip>(_context.Tip.Find(id));
         }
 
-        public Task<int> UpdateTipAsync(Tip tip)
+        public async Task<int> UpdateTipAsync(Tip tip)
         {
             _context.Tip.Update(tip);
-            return _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public bool TipExists(int id)
@@ -48,7 +48,7 @@ namespace TipOfTheDay.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<int> AddCommentAsync(Comment comment, int TipId)
+        public async Task<int> AddCommentAsync(Comment comment, int TipId)
         {
             throw new NotImplementedException();
         }
