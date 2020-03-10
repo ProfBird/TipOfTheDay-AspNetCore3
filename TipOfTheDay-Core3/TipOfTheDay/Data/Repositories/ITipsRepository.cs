@@ -17,10 +17,8 @@ namespace TipOfTheDay.Data
     }
 }
 
-// GetAllTips isn't an async method because it returns an IQueryable object.
-// There is no data actually being returned, that will happen when
-// the controller completes the query, so the correspondingcontroller
-// method should be async.
+// GetAllTips doesn't actually return data, that will happen when
+// the controller completes the query.
 // See https://stackoverflow.com/questions/26676563/entity-framework-queryable-async
 
 
