@@ -17,27 +17,31 @@ namespace TipOfTheDay.Data.Repositories
 
         public Task<int> AddTipAsync(Tip tip)
         {
-            throw new NotImplementedException();
+            _context.Tip.Add(tip);
+            return _context.SaveChangesAsync();
         }
 
         public Task<int> DeleteTipAsync(int? id)
         {
-            throw new NotImplementedException();
+            var tip = _context.Tip.Find(id);
+            _context.Tip.Remove(tip);
+            return _context.SaveChangesAsync();
         }
 
         public Task<IQueryable<Tip>> GetAllTipsAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult<IQueryable<Tip>>(_context.Tip);
         }
 
         public Task<Tip> GetTipAsync(int? id)
         {
-            throw new NotImplementedException();
+            return Task.FromResult<Tip>(_context.Tip.Find(id));
         }
 
         public Task<int> UpdateTipAsync(Tip tip)
         {
-            throw new NotImplementedException();
+            _context.Tip.Update(tip);
+            return _context.SaveChangesAsync();
         }
 
         public bool TipExists(int id)
