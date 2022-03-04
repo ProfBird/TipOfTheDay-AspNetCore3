@@ -1,0 +1,9 @@
+TipController
+* Edit: Support users choosing tips
+
+Tip Views
+* Index: modify to show tags on tips
+* Edit: modify to allow us to choose tags
+
+Seed Data
+* Add some tips and tags - Done
