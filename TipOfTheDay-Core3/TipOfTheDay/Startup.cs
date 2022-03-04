@@ -15,7 +15,9 @@ using Microsoft.Extensions.Hosting;
 using System.Runtime.InteropServices;
 using TipOfTheDay.Data.Repositories;
 
-namespace TipOfTheDay
+namespace TipOfTheDay
+
+
 {
     public class Startup
     {
@@ -35,6 +37,7 @@ namespace TipOfTheDay
                     options => options.UseSqlServer(
                         Configuration.GetConnectionString("SqlSvrConnection")));
             }
+            /*
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 // For MariaDB
@@ -42,6 +45,7 @@ namespace TipOfTheDay
                     options => options.UseMySql(
                         Configuration.GetConnectionString("MySqlConnection")));
             }
+            */
             else
             {
                 // For Mac OS with SQLite

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TipOfTheDay.Data;
 
@@ -11,9 +12,10 @@ using TipOfTheDay.Data;
 namespace TipOfTheDay.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220303214858_SeedTags")]
+    partial class SeedTags
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,23 +346,6 @@ namespace TipOfTheDay.Data.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Tip");
-
-                    b.HasData(
-                        new
-                        {
-                            TipID = 1,
-                            TipText = "The first tip"
-                        },
-                        new
-                        {
-                            TipID = 2,
-                            TipText = "Another tip"
-                        },
-                        new
-                        {
-                            TipID = 3,
-                            TipText = "Yet another tip"
-                        });
                 });
 
             modelBuilder.Entity("TipOfTheDay.Models.AppUser", b =>
