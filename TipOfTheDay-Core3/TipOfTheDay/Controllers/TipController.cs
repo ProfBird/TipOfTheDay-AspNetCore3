@@ -80,13 +80,13 @@ namespace TipOfTheDay.Controllers
 
             // Put all the tags in a list that the user can select from
              var tags = await _context.Tag.ToListAsync();
-            var tagChoices = new List<TagChoiceVM>();
+            var tagChoices = new List<TagChoice>();
             foreach (var tag in tags)
             {
-                tagChoices.Add(new TagChoiceVM { TagID = tag.TagID, Category = tag.Category });
+                tagChoices.Add(new TagChoice { TagID = tag.TagID, Category = tag.Category });
             }
 
-            var vm = new TipTagVM { TagSelections = tagChoices.ToArray(), Tip = tip };
+            var vm = new TipTagVM { TagSelections = tagChoices, Tip = tip };
 
             return View(vm);
         }
@@ -95,13 +95,14 @@ namespace TipOfTheDay.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, TipTagVM vm, TagChoiceVM[] tagSelections)
+        public async Task<IActionResult> Edit(int id, TipTagVM vm)
         {
-            var test = tagSelections;
             if (id != vm.Tip.TipID)
             {
                 return NotFound();
             }
+
+
 
             if (ModelState.IsValid)
             {

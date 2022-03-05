@@ -19,15 +19,15 @@
                 <span asp-validation-for="Tip.TipText" class="text-danger"></span>
             </div>
 
-             Select a Tag<br />
+            Select a Tag<br />
             @{
-                TagChoiceVM[] tagSelections = Model.TagSelections;
-                for(int i = 0; i < tagSelections.Length; i++)
+                for(int i = 0; i < @Model.TagSelections.Count; i++)
                 {
-                    <input type="checkbox" asp-for"tagSelections[i].Selected" />
-                    <label asp-for"tagSelections[i].Tag.Category">@tagSelections[i].Category;</label>
-                   <input type="hidden" asp-for"tagSelections[i].TagID" />
-                     <br />
+                    <input type="checkbox" asp-for="TagSelections[i].Selected" />
+                    <label asp-for="TagSelections[i].Category">@Model.TagSelections[i].Category</label>
+                    <input type="hidden" asp-for="TagSelections[i].TagID" />
+                    <input type="hidden" asp-for="TagSelections[i].Category" />
+                    <br />
                 }
             }
             <div class="form-group">
