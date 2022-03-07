@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" method="post">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Tip.TipID" />
             <div class="form-group">
@@ -18,22 +18,32 @@
                 <input asp-for="Tip.TipText" class="form-control" />
                 <span asp-validation-for="Tip.TipText" class="text-danger"></span>
             </div>
-
-            Select a Tag<br />
-            @{
-                for(int i = 0; i < @Model.TagSelections.Count; i++)
-                {
-                    <input type="checkbox" asp-for="TagSelections[i].Selected" />
-                    <label asp-for="TagSelections[i].Category">@Model.TagSelections[i].Category</label>
-                    <input type="hidden" asp-for="TagSelections[i].TagID" />
-                    <input type="hidden" asp-for="TagSelections[i].Category" />
-                    <br />
-                }
-            }
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+
+            @* 2nd for for adding or removing tags from this tip*@
+    <form asp-action="EditTags">
+        <input type="hidden" asp-for="Tip.TipID" />
+        Select a tag to add it, unselect it to remove it.<br />
+        @{
+            for (int i = 0; i < @Model.TagSelections.Count; i++)
+            {
+                var selector = Model.TagSelections[i];
+                selector.Selected = Model.Tip
+                    .Tags.Where(t => t.TagID == selector.Tag.TagID).Any();
+                <input type="checkbox" asp-for="TagSelections[i].Selected" />
+                <label asp-for="TagSelections[i].Tag.Category">@Model.TagSelections[i].Tag.Category</label>
+                <input type="hidden" asp-for="TagSelections[i].Tag.TagID" />
+                <input type="hidden" asp-for="TagSelections[i].Tag.Category" />
+                <br />
+            }
+        }
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
        
     </div>
 </div>

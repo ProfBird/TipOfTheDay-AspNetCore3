@@ -83,7 +83,7 @@ namespace TipOfTheDay.Controllers
             var tagChoices = new List<TagChoice>();
             foreach (var tag in tags)
             {
-                tagChoices.Add(new TagChoice { TagID = tag.TagID, Category = tag.Category });
+                tagChoices.Add(new TagChoice { Tag = tag });
             }
 
             var vm = new TipTagVM { TagSelections = tagChoices, Tip = tip };
@@ -91,29 +91,25 @@ namespace TipOfTheDay.Controllers
             return View(vm);
         }
 
-        // POST: Tip/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Tips/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, TipTagVM vm)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("TipID,TipText")] Tip tip)
         {
-            if (id != vm.Tip.TipID)
-            {
-                return NotFound();
-            }
-
 
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(vm.Tip);
+                     _context.Update(tip);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipExists(vm.Tip.TipID))
+                    if (!TipExists(tip.TipID))
                     {
                         return NotFound();
                     }
@@ -124,7 +120,75 @@ namespace TipOfTheDay.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(vm.Tip);
+            return View(tip);
+        }
+
+
+        // POST: Tip/Edit/5
+        [HttpPost]
+        public async Task<IActionResult> EditTags(TipTagVM vm)
+        {
+            var tip = await _context.Tip.Include(t => t.Tags)
+                .Where(t => t.TipID == vm.Tip.TipID)
+                .FirstOrDefaultAsync();
+
+            if (tip == null)
+            {
+                return NotFound();
+            }
+
+            // Note: vm.TagSelections has all the tags with some possibly selected
+
+            // Remove the unselected tags from the tip, add the selected ones
+            foreach (var selection in vm.TagSelections)
+            {
+                // Check the selection tag to see if it's already on the tip's list of tags
+                if (tip.Tags
+                    .Where(t => t.TagID == selection.Tag.TagID)
+                    .Any() )
+                {
+                    // if the tag is unselected, remove it from the tip's list
+                    var tagsToRemove = new List<Tag>();
+                    foreach(Tag tag in tip.Tags)
+                    {
+                        if(!selection.Selected)
+                        {
+                            tagsToRemove.Add(tag);
+                        }
+                    }
+                    foreach (Tag tag in tagsToRemove)
+                    {
+                        tip.Tags.Remove(tag);
+                    }
+                }
+                // If the selection tag isn't on the tip's list and is selected add it
+                else if (selection.Selected)
+                {
+                    tip.Tags.Add(selection.Tag);
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(tip);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TipExists(tip.TipID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View("Edit", tip); // if ModelState not valid
         }
 
         // GET: Tip/Delete/5

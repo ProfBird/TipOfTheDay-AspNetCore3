@@ -1,5 +1,5 @@
 TipController
-* Edit: Support users choosing tips
+* Edit: Support users choosing tips - Done
 
 Tip Views
 * Index: modify to show tags on tips
