@@ -98,8 +98,6 @@ namespace TipOfTheDay.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("TipID,TipText")] Tip tip)
         {
-
-
             if (ModelState.IsValid)
             {
                 try
@@ -128,6 +126,8 @@ namespace TipOfTheDay.Controllers
         [HttpPost]
         public async Task<IActionResult> EditTags(TipTagVM vm)
         {
+            // Get the tip object with the ID in the VM from the database.
+            // We need to do our add/remove tag operations on the object from the DB
             var tip = await _context.Tip.Include(t => t.Tags)
                 .Where(t => t.TipID == vm.Tip.TipID)
                 .FirstOrDefaultAsync();
@@ -137,9 +137,9 @@ namespace TipOfTheDay.Controllers
                 return NotFound();
             }
 
-            // Note: vm.TagSelections has all the tags with some possibly selected
+            // Note: vm.TagSelections has all the tags from the Tags table of the DB with some possibly selected
 
-            // Remove the unselected tags from the tip, add the selected ones
+            // Remove unselected tags from the tip, add selected ones
             foreach (var selection in vm.TagSelections)
             {
                 // Check the selection tag to see if it's already on the tip's list of tags
@@ -147,21 +147,22 @@ namespace TipOfTheDay.Controllers
                     .Where(t => t.TagID == selection.Tag.TagID)
                     .Any() )
                 {
-                    // if the tag is unselected, remove it from the tip's list
-                    var tagsToRemove = new List<Tag>();
-                    foreach(Tag tag in tip.Tags)
+                    // If the selection tag IS on the tip's list and is NOT selected remove it
+                    if (!selection.Selected)
                     {
-                        if(!selection.Selected)
+                        // In order to romove the tag, we need to get the actual tag object from the tip
+                        Tag tagToRemove = null;
+                        foreach (Tag tag in tip.Tags)
                         {
-                            tagsToRemove.Add(tag);
+                            if (selection.Tag.TagID == tag.TagID)
+                            {
+                                tagToRemove = tag;
+                            }
                         }
-                    }
-                    foreach (Tag tag in tagsToRemove)
-                    {
-                        tip.Tags.Remove(tag);
+                        tip.Tags.Remove(tagToRemove);
                     }
                 }
-                // If the selection tag isn't on the tip's list and is selected add it
+                // If the selection tag is NOT on the tip's list and IS selected add it
                 else if (selection.Selected)
                 {
                     tip.Tags.Add(selection.Tag);
@@ -172,7 +173,6 @@ namespace TipOfTheDay.Controllers
             {
                 try
                 {
-                    _context.Update(tip);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
